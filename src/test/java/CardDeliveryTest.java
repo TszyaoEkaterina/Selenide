@@ -25,6 +25,6 @@ public class CardDeliveryTest {
         $(".grid-row button").click();
         $(".notification__title").should(ownText("Успешно!"), Duration.ofSeconds(15));
         $(".notification__content").should(ownText("Встреча успешно забронирована на \r\n "+
-        "28.05.2022"), Duration.ofSeconds(15));
+        appointmentDate), Duration.ofSeconds(15));
     }
 }

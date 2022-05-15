@@ -23,7 +23,7 @@ public class CardDeliveryTest {
         LocalDate date = currentDate.plusDays(14);
         String appointmentDate = date.format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
         $("[placeholder=Город]").setValue("Омск");
-        $("[data-test-id='date'] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);
+        $("[data-test-id='date'] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);//clear field
         $("[placeholder=\"Дата встречи\"]").setValue(appointmentDate);
         $(byName("name")).setValue("Цзяо Екатерина");
         $(byName("phone")).setValue("+71234567890");
@@ -39,7 +39,7 @@ public class CardDeliveryTest {
         LocalDate date = currentDate.plusDays(5);
         String appointmentDate = date.format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
         $("[placeholder=Город]").setValue("Ом");
-        $x("//*[text()=\"Омск\"]").click();
+        $x("//*[text()=\"Омск\"]").click();//choose city
         $("[data-test-id='date'] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);
         $("[placeholder=\"Дата встречи\"]").setValue(appointmentDate);
         $(byName("name")).setValue("Цзяо Екатерина");
@@ -56,12 +56,12 @@ public class CardDeliveryTest {
         LocalDate date = currentDate.plusDays(7);
         String appointmentDate = date.format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
         $("[placeholder=Город]").setValue("Омск");
-        $(withText("Карта")).click();
-        $x("//*[@class=\"input__icon\"]").click();
+        $(withText("Карта")).click();//close popup with cities
+        $x("//*[@class=\"input__icon\"]").click();//open calendar
         if (date.getDayOfMonth() <= 7) {
             $(".calendar__arrow_direction_right[data-step=\"1\"]").click();
-        }
-        $(byTagAndText("td", String.valueOf(date.getDayOfMonth()))).click();
+        }//in case date is in the next month
+        $(byTagAndText("td", String.valueOf(date.getDayOfMonth()))).click();//choose date
         $(byName("name")).setValue("Цзяо Екатерина");
         $(byName("phone")).setValue("+71234567890");
         $(".checkbox").click();
